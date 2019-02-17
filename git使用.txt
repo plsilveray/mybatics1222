@@ -1,0 +1,12 @@
+//登录本地ＧＩＴ账号
+cloud@cloud-ThinkPad-T450s:/opt/workspace$ git config --global user.email "915236215@qq.com"
+cloud@cloud-ThinkPad-T450s:/opt/workspace$ git config --global user.name "plsilveray"
+//在文件夹下进入控制台，创建网上仓库和本地仓库，然后提交commit确认
+cloud@cloud-ThinkPad-T450s:/opt/workspace$ git add mybatics1222/
+cloud@cloud-ThinkPad-T450s:/opt/workspace$ git commit -m "first commit"
+//关联本地和网上仓库
+git remote add origin git@github.com:plsilveray/网络仓库名.git
+git push -u origin master
+//add
+
+
