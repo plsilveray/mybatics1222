@@ -1,0 +1,14 @@
+原始DAO方法首先创建一个接口，接着在接口和jdbc方法基础上完成增删查改的方法的实现类
+ＤＡＯ只需接收来自前端和sevelet处理后传过来的参数，就能自动调用对应的增删查改方法
+弊端：
+	原始的方法有大量的模板方法，可以提取重复类型的代码出来，让程序员更好维护，这时候可以引进单例模式
+	调用方法时将statement的id硬编码了
+mapper代理方法改进：
+	提前检查传入参数，不用执行后才发现参数类型错了
+	用映射文件和接口
+开发规范：
+	在mapperｘｍｌ中namespace等于mapper接口地址
+	mapperjava接口方法名和mapperxml中statement的id一致
+	mapper接口方法输入参数类型和mapperxml中statemente的parameterType的类型一致
+	同理返回值一样
+映射xml利用反射统一生成代码.这样就由原来创建SESSION后传参变成了创建一个继承接口的对象传参
