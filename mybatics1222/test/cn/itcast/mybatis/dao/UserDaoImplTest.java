@@ -1,6 +1,7 @@
 package cn.itcast.mybatis.dao;
 
 import java.io.InputStream;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -10,6 +11,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import cn.itcast.mybatis.mapper.UserMapper;
+import cn.itcast.mybatis.po.T_userCustom;
+import cn.itcast.mybatis.po.T_userQueryVo;
 import cn.itcast.mybatis.po.t_user;
 
 public class UserDaoImplTest {
@@ -41,4 +44,41 @@ public class UserDaoImplTest {
 		sqlSession.close();
 	}
 	//其他方法见pdf
+	
+	@Test
+	public void testFindUserList() throws Exception {
+		//得到会话
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		//创建UserMapper对象，mybatis自动生成代理对象,一个核心变化就是原先直接调方法，现在要先.getMapper
+		UserMapper UserMapper = sqlSession.getMapper(UserMapper.class);
+		//创建包装对象，设置查询条件
+		T_userQueryVo t_userQueryVo=new T_userQueryVo();
+		T_userCustom t_userCustom = new T_userCustom();
+		t_userCustom.setLoginname("li");
+		t_userCustom.setUid("32DB3700D2564254982BC58B0E4D95BC");
+		t_userQueryVo.setUserCustom(t_userCustom);
+		//调用方法
+		List<T_userCustom> list = UserMapper.findT_userList(t_userQueryVo);
+		
+		System.out.println(list);
+		sqlSession.close();
+	}
+	@Test
+	public void testFindUsercCount() throws Exception {
+		//得到会话
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		//创建UserMapper对象，mybatis自动生成代理对象,一个核心变化就是原先直接调方法，现在要先.getMapper
+		UserMapper UserMapper = sqlSession.getMapper(UserMapper.class);
+		//创建包装对象，设置查询条件
+		T_userQueryVo t_userQueryVo=new T_userQueryVo();
+		T_userCustom t_userCustom = new T_userCustom();
+		
+		t_userCustom.setUid("x");
+		t_userQueryVo.setUserCustom(t_userCustom);
+		//调用方法
+		int result = UserMapper.findT_userCount(t_userQueryVo);
+		
+		System.out.println(result);
+		sqlSession.close();
+	}
 }

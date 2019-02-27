@@ -1,6 +1,7 @@
 package cn.itcast.mybatis.po;
 
 public class t_user {
+
 	//属性名和表类型对应
 	private String uid;
 	  private String loginname;
